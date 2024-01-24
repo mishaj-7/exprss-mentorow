@@ -1,25 +1,23 @@
 const express = require('express');
 const app = express();
 const PORT = 5004;
-const { products } = require('./data');
-const logger = require('./logger')
-const autherize = require('./autherize');
+const { people } = require('./data');
 const morgan = require('morgan');
 
-app.use(morgan('tiny'))
+app.use(express.json());
 
 
-app.get("/", (req, res) => {
-    res.send("home");
-    
-});
 
-app.get('/about', (req, res) => {
-    res.send('About')
+app.get('/', (req, res) => {
+    res.status(200).json({ sucess: true, data:people})
+
 })
 
-app.get('/api/products', (req, res) => {
-    res.send("products")
+app.post('/post/main', (req, res) => {
+    //req.body = { name: "hai" }
+    //console.log('heo');
+    console.log(req.body);
+    res.send('POST')
 })
 
 
